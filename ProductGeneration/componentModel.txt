@@ -40,6 +40,9 @@ listDissertation => grailsapp/views/dissertacao/list.gsp;
 editDissertation => grailsapp/views/dissertacao/edit.gsp;
 createDissertation => grailsapp/views/dissertacao/create.gsp;
 formDissertation => grailsapp/views/dissertacao/form.gsp;
+searchDissertacao => grailsapp/views/dissertacao/search.gsp;
+searchTemplateDissertacao => grailsapp/views/dissertacao/_search.gsp;
+
 
 showTool => grailsapp/views/ferramenta/show.gsp;
 listTool => grailsapp/views/ferramenta/list.gsp;
@@ -209,6 +212,9 @@ testFunctionalFerramentaCreate => test/functional/pages/FerramentaCreate.groovy;
 testFunctionalDissertationCreate => test/functional/pages/DissertationCreate.groovy;
 testFunctionalBookChapterCreatePage => test/functional/pages/BookChapterCreatePage.groovy;
 testFunctionalConferenciaCreatePage => test/functional/pages/ConferenciaCreatePage.groovy;
+
+testFunctionalDissertationSearchListPage => test/functional/pages/DissertationSearchListPage.groovy;
+testFunctionalDissertationSearchPage => test/functional/pages/DissertationSearchPage.groovy;
 
 bibtexParse => grailsapp/domain/rgms/publication/BibtexParse.groovy;
 bibtexFile => grailsapp/domain/rgms/publication/BibtexFile.groovy;

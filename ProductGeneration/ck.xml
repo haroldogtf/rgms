@@ -1255,13 +1255,6 @@
         <expression>rgms</expression>
         <transformation>
             <name>selectAndMoveComponent</name>
-            <args>searchtemplatetese,grailsapp/views/tese/_search.gsp</args>
-        </transformation>
-    </configuration>
-    <configuration>
-        <expression>rgms</expression>
-        <transformation>
-            <name>selectAndMoveComponent</name>
             <args>thesisFeature,test/cucumber/Thesis.feature</args>
         </transformation>
     </configuration>
@@ -1305,6 +1298,34 @@
         <transformation>
             <name>selectAndMoveComponent</name>
             <args>testFunctionalThesisPage,test/functional/pages/ThesisPage.groovy</args>
+        </transformation>
+    </configuration>
+    <configuration>
+        <expression>rgms</expression>
+        <transformation>
+            <name>selectAndMoveComponent</name>
+            <args>searchDissertacao,grailsapp/views/dissertacao/search.gsp</args>
+        </transformation>
+    </configuration>
+    <configuration>
+        <expression>rgms</expression>
+        <transformation>
+            <name>selectAndMoveComponent</name>
+            <args>searchTemplateDissertacao,grailsapp/views/dissertacao/_search.gsp</args>
+        </transformation>
+    </configuration>
+    <configuration>
+        <expression>rgms</expression>
+        <transformation>
+            <name>selectAndMoveComponent</name>
+            <args>testFunctionalDissertationSearchListPage,test/functional/pages/DissertationSearchListPage.groovy</args>
+        </transformation>
+    </configuration>
+    <configuration>
+        <expression>rgms</expression>
+        <transformation>
+            <name>selectAndMoveComponent</name>
+            <args>testFunctionalDissertationSearchPage,test/functional/pages/DissertationSearchPage.groovy</args>
         </transformation>
     </configuration>
 </configurationModel>
