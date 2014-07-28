@@ -45,24 +45,37 @@ class ThesisOrDissertationController {
     }
 
     def searchListThesisOrDissertation(String thesisOrDissertation, params) {
+        def results
+
         if (thesisOrDissertation == "Tese") {
-            if(session["previous_search_list"] == null){
-                session["previous_search_list"] = [params.title]
-                session["previous_search_string"] = '"'+params.title+'"'
-            }else{
-                def previousSearchList = session["previous_search_list"]
-                if(previousSearchList instanceof java.util.List){
-                    if(!previousSearchList.contains(params.title)){
-                        previousSearchList.add(params.title)
-                        session["previous_search_string"] = session["previous_search_string"] + ',"'+params.title+'"'
-                    }
-                    session["previous_search_list"] = previousSearchList
-                }
-            }
-            def results = Tese.findAllByTitleLikeAndPublicationDateBetweenAndSchoolLike('%'+params.title+'%', params.publicationInitialDate, params.publicationEndDate, '%'+params.school+'%')
+            //#if($contextualInformation)
+            savePreviousSearchInSession(params)
+            //#end
+            results = Tese.findAllByTitleLikeAndPublicationDateBetweenAndSchoolLike('%'+params.title+'%', params.publicationInitialDate, params.publicationEndDate, '%'+params.school+'%')
             render(view:'list', model:[teseInstanceList: results, teseInstanceTotal:results.size()], bean: Tese)
+        } else if (thesisOrDissertation == "Dissertacao") {
+            results = Dissertacao.findAllByTitleLikeAndPublicationDateBetweenAndSchoolLike('%'+params.title+'%', params.publicationInitialDate, params.publicationEndDate, '%'+params.school+'%')
+            render(view:'list', model:[dissertacaoInstanceList: results, dissertacaoInstanceTotal:results.size()], bean: Dissertacao)
         }
     }
+
+    //#if($contextualInformation)
+    def savePreviousSearchInSession(params) {
+        if (session["previous_search_list"] == null) {
+            session["previous_search_list"] = [params.title]
+            session["previous_search_string"] = '"' + params.title + '"'
+        } else {
+            def previousSearchList = session["previous_search_list"]
+            if (previousSearchList instanceof List) {
+                if (!previousSearchList.contains(params.title)) {
+                    previousSearchList.add(params.title)
+                    session["previous_search_string"] = session["previous_search_string"] + ',"' + params.title + '"'
+                }
+                session["previous_search_list"] = previousSearchList
+            }
+        }
+    }
+    //#end
 
     def saveThesisOrDissertation(String thesisOrDissertation, params) {
         //noinspection GroovyAssignabilityCheck
