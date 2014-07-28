@@ -9,7 +9,7 @@
 	<body>
 		<a href="#list-dissertacao" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <g:render template="navigation"/>
-<!--//#if($upXMLDissertacao)-->
+<!--//#if($upXMLDissertacao)-->
         <div class="xml" role="xmlUpload">
             <ul>
                 <g:form controller="XML" action="uploadXMLDissertacao" method="post" enctype="multipart/form-data">

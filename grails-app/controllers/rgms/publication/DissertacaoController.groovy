@@ -49,4 +49,12 @@ class DissertacaoController extends ThesisOrDissertationController {
     def delete() {
         deleteThesisOrDissertation("Dissertacao", params)
     }
+
+    def search() {
+        searchThesisOrDissertation("Dissertacao", params)
+    }
+
+    def searchList() {
+        searchListThesisOrDissertation("Dissertacao", params)
+    }
 }
