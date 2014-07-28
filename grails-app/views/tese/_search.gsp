@@ -9,14 +9,14 @@
 </div>
 
 <div class="fieldcontain">
-	<label for="publicationDate">
-		<g:message code="tese.publicationInitalDate.label" default="Initial Date" />
+	<label for="publicationInitialDate">
+		<g:message code="tese.publicationInitialDate.label" default="Initial Date" />
 	</label>
 	<g:datePicker name="publicationInitialDate" precision="day"  value="${teseInstance?.publicationDate}"  />
 </div>
 
 <div class="fieldcontain">
-    <label for="publicationDate">
+    <label for="publicationEndDate">
         <g:message code="tese.publicationEndDate.label" default="End Date" />
     </label>
     <g:datePicker name="publicationEndDate" precision="day"  value="${teseInstance?.publicationDate}"  />
