@@ -26,4 +26,12 @@ class DissertationShowPage extends Page{
 			$('input.delete').click()
 		}
 	}
+
+    def checkDissertationDetails(title, year, school) {
+        def elements = $('div', id: 'show-dissertacao').find('ol')[0].find('li.fieldcontain span[aria-labelledby]')
+
+        assert elements[0].text() == title
+        assert elements[1].text().split('/')[2].split(' ')[0] == year
+        assert elements[3].text() == school
+    }
 }

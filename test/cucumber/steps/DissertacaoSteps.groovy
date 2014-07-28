@@ -1,7 +1,11 @@
+import org.codehaus.groovy.grails.web.context.ServletContextHolder
 import pages.DissertationCreate
 import pages.DissertationEditPage
 import pages.DissertationPage
 import pages.DissertationShowPage
+import pages.DissertationSearchPage
+import pages.DissertationSearchListPage
+import pages.LoginPage
 import rgms.authentication.User
 import rgms.publication.Dissertacao
 import steps.TestDataDissertacao
@@ -156,4 +160,43 @@ Given(~'^the system has no dissertation stored$')   {->
     assert intialSize == 0
 }
 
+//Scenario: search an existing dissertation
+Given(~'^the system has one dissertation entitled "([^"]*)" with publication year "([^"]*)" and school "([^"]*)"$') { title, year, school ->
+    Login()
 
+    to DissertationCreate
+    at DissertationCreate
+
+    def absolutePath = ServletContextHolder.servletContext.getRealPath("/test/functional/steps/TCS-04.pdf")
+    absolutePath = absolutePath.replace("\\", "/").replaceAll("/web-app", "")
+    page.fillDissertationDetails(title, "1", "1", year, school, "Cidade Universitaria", absolutePath)
+}
+
+And(~'^I am at the dissertation search page$') { ->
+    to DissertationSearchPage
+    at DissertationSearchPage
+}
+
+When(~'^I search a dissertation entitled "([^"]*)" with publication year "([^"]*)" and school "([^"]*)"$') { title, year, school ->
+    at DissertationSearchPage
+
+    page.fillDissertationSearchDetails(title, "1", "1", year, "31", "12", year, school)
+    page.searchDissertations()
+}
+
+And(~'^I select to view the dissertation that has title "([^"]*)"$') { title ->
+    at DissertationSearchListPage
+    page.selectViewDissertation(title)
+}
+
+Then(~'^the dissertation "([^"]*)" with publication year "([^"]*)" and school "([^"]*)" appears in the dissertation view page$') { title, year, school ->
+    at DissertationShowPage
+    page.checkDissertationDetails(title, year, school)
+}
+
+//FUNÇÔES AUXILIARES
+def Login() {
+    to LoginPage
+    at LoginPage
+    page.fillLoginData("admin", "adminadmin")
+}

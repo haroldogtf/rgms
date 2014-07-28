@@ -12,6 +12,13 @@ Feature: Dissertation Tests
     And I delete "New dissertation"
     Then the system has no dissertation stored
 
+  Scenario: search an existing dissertation
+    Given the system has one dissertation entitled "Software Product Lines" with publication year "1998" and school "UFPE"
+    And I am at the dissertation search page
+    When I search a dissertation entitled "Software Product Lines" with publication year "1998" and school "UFPE"
+    And I select to view the dissertation that has title "Software Product Lines"
+    Then the dissertation "Software Product Lines" with publication year "1998" and school "UFPE" appears in the dissertation view page
+
   Scenario: new dissertation without school
     Given the system has no dissertation entitled "Dissertation without school"
     When I create the dissertation "Dissertation without school" with file name "Dissertationwithoutschool.txt" without school
